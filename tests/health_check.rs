@@ -8,8 +8,6 @@ fn spawn_app() -> String {
     format!("http://127.0.0.1:{}", port)
 }
 
-// Use the following command for checking the generated code
-// cargo expand --test health_check
 #[tokio::test]
 async fn health_check_works() {
     let addr = spawn_app();
