@@ -1,6 +1,6 @@
 name: Rust
 
-on: [ push, pull_request ]
+on: [push, pull_request]
 
 env:
   CARGO_TERM_COLOR: always
@@ -13,19 +13,19 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          postgres_user: postgres
-          postgres_password: password
-          postgres_db: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: postgres
         ports:
           - 5432:5432
     env:
-      sqlx_version: 0.6.2
-      sqlx_features: "rustls,postgres"
+      SQLX_VERSION: 0.6.2
+      SQLX_FEATURES: "rustls,postgres"
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
       - name: Cache dependencies
-        id: cache-dependency
+        id: cache-dependencies
         uses: actions/cache@v2
         with:
           path: |
@@ -57,7 +57,7 @@ jobs:
             sqlx-cli
             --force
             --version=${{ env.SQLX_VERSION }}
-            --features= ${{ env.SQLX_FEATURES }}
+            --features ${{ env.SQLX_FEATURES }}
             --no-default-features
             --locked
 
@@ -93,14 +93,14 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          postgres_user: postgres
-          postgres_password: password
-          postgres_db: postgres
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: postgres
         ports:
           - 5432:5432
     env:
-      sqlx_version: 0.6.2
-      sqlx_features: "rustls,postgres"
+      SQLX_VERSION: 0.6.2
+      SQLX_FEATURES: 'rustls,postgres'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -129,7 +129,7 @@ jobs:
             sqlx-cli
             --force
             --version=${{ env.SQLX_VERSION }}
-            --features= ${{ env.SQLX_FEATURES }}
+            --features ${{ env.SQLX_FEATURES }}
             --no-default-features
             --locked
 
@@ -141,7 +141,7 @@ jobs:
       - name: Run clippy
         uses: actions-rs/clippy-check@v1
         with:
-          token: ${{secrets.GITHUB_TOKEN}}
+          token: ${{ secrets.GITHUB_TOKEN }}
           args: -- -D warnings
 
   coverage:
@@ -158,7 +158,7 @@ jobs:
           - 5432:5432
     env:
       SQLX_VERSION: 0.6.2
-      SQLX_FEATURES: "rustls,postgres"
+      SQLX_FEATURES: 'rustls,postgres'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
