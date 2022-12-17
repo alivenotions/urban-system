@@ -26,3 +26,5 @@ sqlx migrate add migration_name
 ```bash
 sqlx migrate run
 ```
+### telemetry
+Logging is super important apparently. and that's why we are going to log things.
