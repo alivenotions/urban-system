@@ -2,6 +2,13 @@
 
 A spanking new system for newsletter subscription
 
+## getting started locally
+
+* Ensure psql is installed
+* `./scripts/init_db.sh`
+* `cargo install --path .`
+* `cargo run`
+
 ## testing
 
 * Good old `cargo test`
@@ -26,3 +33,5 @@ sqlx migrate add migration_name
 ```bash
 sqlx migrate run
 ```
+### telemetry
+Logging is super important apparently. and that's why we are going to log things.
