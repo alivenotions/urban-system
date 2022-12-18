@@ -2,6 +2,13 @@
 
 A spanking new system for newsletter subscription
 
+## getting started locally
+
+* Ensure psql is installed
+* `./scripts/init_db.sh`
+* `cargo install --path .`
+* `cargo run`
+
 ## testing
 
 * Good old `cargo test`
